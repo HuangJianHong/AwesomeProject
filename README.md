@@ -1,2 +1,2 @@
 # AwesomeProject
- React-Native component simple demo;
+ React-Native component simple Demo;
