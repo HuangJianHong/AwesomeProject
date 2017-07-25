@@ -189,8 +189,8 @@ class LessonRefreshControl extends Component {
     constructor(props){
         super(props);
         this.state= {
-            isRefreshing : false,
             loaded: 0,
+            isRefreshing : false,
             rowData: Array.from(new Array(20)).map(
                 (value, i) => ({text: '初始行'+i})),
           };
@@ -207,7 +207,9 @@ class LessonRefreshControl extends Component {
              refreshControl={
                  <RefreshControl
                      refreshing = {this.state.isRefreshing}
-                     onRefresh={this._onRefresh}
+                     onRefresh={this._onRefresh.bind(this)}
+                     // title = "Loading...."
+                     // titleColor="#00ff00"
                      colors={['#ff0000','#00ff00', '#0000ff', '#3ad564']}
                      progressBackgroundColor='#ffffff'  />
              }
@@ -228,11 +230,11 @@ class LessonRefreshControl extends Component {
                 })).concat(this.state.rowData);
 
             this.setState({
-                isRefreshing: false,
                 loaded:this.state.loaded + 5,
+                isRefreshing: false,
                 rowData: newData,
             });
-        }, 4000);
+        }, 2000);
      }
 }
   class Row extends  Component{
